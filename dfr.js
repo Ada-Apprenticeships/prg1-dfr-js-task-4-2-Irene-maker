@@ -30,7 +30,7 @@ function findTotal(dataset) {
   let total = 0;
   for (let value of dataset) {
     if (validNumber(value)) {
-      total += parseFloat(value); // Convert to a number and add to the total
+      total += parseFloat(value); 
     }
   }
   return total;
@@ -48,33 +48,26 @@ function calculateMean(dataset) {
   // Iterate over the dataset to calculate total and count valid numbers
   for (let value of dataset) {
     if (validNumber(value)) {
-      total += parseFloat(value); // Add valid number to total
-      count++; // Increment count for each valid number
+      total += parseFloat(value); 
+      count++; 
     }
   }
-
-  // Calculate and return the average, or return 0 if no valid numbers were found
   return count > 0 ? total / count : 0;
 }
 
 function calculateMedian(dataset) {
-  // Return null if dataset is not a valid 1D array
   if (!Array.isArray(dataset) || dataset.some(Array.isArray)) {
     return 0;
   }
   
   // Filter valid numbers using the validNumber function
   const validNumbers = dataset.filter(value => validNumber(value)).map(Number);
-
-  // Return null if there are no valid numbers
   if (validNumbers.length === 0) {
     return 0;
   }
   
-  // Sort the valid numbers in ascending order
   validNumbers.sort((a, b) => a - b);
 
-  // Calculate the median
   const mid = Math.floor(validNumbers.length / 2);
   
   // If the length is odd, return the middle element
@@ -87,20 +80,17 @@ function calculateMedian(dataset) {
 }
 
 function convertToNumber(dataframe, col) {
-  let conversionCount = 0; // Counter for successful conversions
+  let conversionCount = 0; 
   
   // Skip the header row and iterate over each row in the dataset
   for (let i = 1; i < dataframe.length; i++) {
     const value = dataframe[i][col];
-    
-    // Check if value is a valid number string and convert to number if true
     if (typeof value === 'string' && !isNaN(value)) {
       dataframe[i][col] = parseFloat(value);
-      conversionCount++; // Increment counter for each successful conversion
+      conversionCount++; 
     }
   }
-  
-  return conversionCount; // Return the count of successful conversions
+  return conversionCount; 
 }
 
 function flatten(dataframe) {
@@ -117,8 +107,7 @@ function flatten(dataframe) {
       dataset.push(parseFloat(value));
     }
   }
-  
-  return dataset; // Return the 1D array of valid numbers
+  return dataset; 
 }
 
 function loadCSV(csvFile, ignoreRows = [], ignoreCols = []) {
